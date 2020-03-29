@@ -27,4 +27,10 @@ public class Member {
 
     private MemberRole role;
 
+    public Member(String email, String nickname, String password, MemberRole role) {
+        this.email = email;
+        this.nickname = nickname;
+        this.password = password;
+        this.role = role;
+    }
 }
