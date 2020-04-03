@@ -16,7 +16,11 @@ public class MainController {
         if (member != null) {
             model.addAttribute(member);
         }
-        log.info("main controller 지나감");
         return "index";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
     }
 }
