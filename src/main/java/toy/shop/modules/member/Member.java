@@ -4,10 +4,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -25,6 +22,7 @@ public class Member {
 
     private String password;
 
+    @Enumerated(EnumType.STRING)
     private MemberRole role;
 
     public Member(String email, String nickname, String password, MemberRole role) {
