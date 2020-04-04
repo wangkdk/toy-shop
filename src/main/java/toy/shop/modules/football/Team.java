@@ -1,4 +1,4 @@
-package toy.shop.modules.footboll;
+package toy.shop.modules.football;
 
 import lombok.*;
 

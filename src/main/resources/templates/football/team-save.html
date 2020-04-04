@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments.html :: head"></head>
+
+<body class="bg-light">
+<nav th:replace="fragments.html :: main-nav"></nav>
+
+<div class="container">
+    <div class="py-5 text-center">
+        <h2>팀 등록</h2>
+        <form class="needs-validation col-sm-6" action="#"
+              th:action="@{/sign-up}" th:object="${teamSaveForm}" method="post" novalidate>
+
+        </form>
+    </div>
+</div>
+</body>
+</html>
