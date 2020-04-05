@@ -1,5 +1,6 @@
 package toy.shop.modules.football;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,11 +10,12 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @AutoConfigureMockMvc
 @Transactional
@@ -26,18 +28,39 @@ class TeamControllerTest {
     @Autowired
     TeamRepository teamRepository;
 
+    @BeforeEach
+    void beforeEach() {
+        Team team = Team.builder()
+                .league(League.EPL)
+                .name("리버풀")
+                .build();
+        teamRepository.save(team);
+    }
+
+    @DisplayName("팀 등록 화면")
+    @WithMockUser
+    @Test
+    void saveTeamView() throws Exception {
+        mockMvc.perform(get("/football/team/create")
+        )
+                .andExpect(status().isOk())
+                .andExpect(view().name("football/team-save"))
+                .andExpect(model().attributeExists("teamSaveForm"))
+                .andExpect(model().attributeExists("leagues"));
+    }
+
     @DisplayName("팀 등록 성공")
     @WithMockUser
     @Test
     void saveTeam() throws Exception {
         mockMvc.perform(post("/football/team/create")
                 .param("league", String.valueOf(League.EPL))
-                .param("name","리버풀")
+                .param("name","첼시")
                 .with(csrf())
         )
                 .andExpect(status().is3xxRedirection());
 
-        Team team = teamRepository.findByLeagueAndName(League.EPL, "리버풀");
+        Team team = teamRepository.findByLeagueAndName(League.EPL, "첼시");
 
         assertNotNull(team);
     }
@@ -46,12 +69,6 @@ class TeamControllerTest {
     @WithMockUser
     @Test
     void saveTeam_exists_league_team() throws Exception {
-        Team team = Team.builder()
-                .league(League.EPL)
-                .name("리버풀")
-                .build();
-        teamRepository.save(team);
-
         mockMvc.perform(post("/football/team/create")
                 .param("league", String.valueOf(League.EPL))
                 .param("name","리버풀")
@@ -59,5 +76,32 @@ class TeamControllerTest {
         )
                 .andExpect(status().isOk())
                 .andExpect(model().hasErrors());
+    }
+
+    @DisplayName("팀 수정 화면")
+    @WithMockUser
+    @Test
+    void modifyTeamView() throws Exception {
+        mockMvc.perform(get("/football/team/update/1")
+        )
+                .andExpect(status().isOk())
+                .andExpect(view().name("football/team-modify"))
+                .andExpect(model().attributeExists("teamModifyForm"))
+                .andExpect(model().attributeExists("leagues"));
+    }
+
+    @DisplayName("팀 수정 성공")
+    @WithMockUser
+    @Test
+    void modifyTeam() throws Exception {
+        mockMvc.perform(post("/football/team/update/1")
+                .param("league", String.valueOf(League.EPL))
+                .param("name","첼시")
+                .with(csrf())
+        )
+                .andExpect(status().is3xxRedirection());
+
+        Team team = teamRepository.findById(1L).get();
+        assertEquals("첼시", team.getName());
     }
 }

@@ -32,4 +32,9 @@ public class Team {
         this.name = name;
     }
 
+    public void updateTeam(League league, String name) {
+        this.league = league;
+        this.name = name;
+    }
+
 }

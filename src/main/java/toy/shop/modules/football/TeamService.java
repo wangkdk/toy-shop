@@ -1,9 +1,11 @@
 package toy.shop.modules.football;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class TeamService {
@@ -18,5 +20,13 @@ public class TeamService {
                 .build();
 
         teamRepository.save(team);
+    }
+
+    @Transactional
+    public void modifyTeam(Long id, League league, String name) {
+        Team team = teamRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 팀입니다."));
+
+        log.info("===== TeamService.modifyTeam =====");
+        team.updateTeam(league, name);
     }
 }

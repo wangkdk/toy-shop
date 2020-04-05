@@ -12,11 +12,11 @@
     <div class="py-5 text-center">
         <h2>팀 등록</h2>
         <form class="needs-validation col-sm-12" action="#"
-              th:action="@{/football/team/create}" th:object="${teamSaveForm}" method="post" novalidate>
+              th:action="@{'/football/team/update/' + ${teamModifyForm.getId()}}" th:object="${teamModifyForm}" method="post" novalidate>
             <div class="form-group">
                 <label th:for="league">리그</label>
-                <select class="custom-select" th:field="*{league}">
-                   <option th:each="leagues : ${leagues}"
+                <select class="custom-select" th:field="*{league}" th:selected="*{league}">
+                    <option th:each="leagues : ${leagues}"
                             th:text="${leagues.name}"
                             th:value="${leagues}"></option>
                 </select>
@@ -31,7 +31,7 @@
             </div>
 
             <div class="form-group">
-                <button class="btn btn-primary btn-block" type="submit">등록하기</button>
+                <button class="btn btn-primary btn-block" type="submit">수정하기</button>
             </div>
         </form>
     </div>
