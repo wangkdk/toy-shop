@@ -1,12 +1,12 @@
-package toy.shop.modules.football;
+package toy.shop.modules.football.form;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import toy.shop.modules.football.League;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 
 @Getter
 @Setter
