@@ -86,4 +86,10 @@ public class TeamController {
 
         return "redirect:/football/team";
     }
+
+    @PostMapping("/delete/{id}")
+    public String deleteSubmit(@PathVariable Long id) {
+        teamService.removeTeam(id);
+        return "redirect:/football/team";
+    }
 }

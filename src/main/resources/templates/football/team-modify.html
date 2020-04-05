@@ -34,6 +34,14 @@
                 <button class="btn btn-primary btn-block" type="submit">수정하기</button>
             </div>
         </form>
+
+        <form class="needs-validation col-sm-12" action="#"
+              th:action="@{'/football/team/delete/' + ${teamModifyForm.getId()}}" th:object="${teamModifyForm}" method="post" novalidate>
+            <div class="form-group">
+                <button class="btn btn-danger btn-block" type="submit">삭제하기</button>
+            </div>
+        </form>
+
     </div>
 </div>
 </body>

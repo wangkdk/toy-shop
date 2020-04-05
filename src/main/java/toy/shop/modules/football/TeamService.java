@@ -29,4 +29,10 @@ public class TeamService {
         log.info("===== TeamService.modifyTeam =====");
         team.updateTeam(league, name);
     }
+
+    @Transactional
+    public void removeTeam(Long id) {
+        Team team = teamRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("존재하지 않는 팀입니다."));
+        teamRepository.delete(team);
+    }
 }
