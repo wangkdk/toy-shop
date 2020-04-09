@@ -21,13 +21,42 @@
         </tr>
         </thead>
         <tbody id="tbody">
-        <tr th:each="team : ${teams.getContent()}">
+        <tr th:each="team : ${pages.getContent()}">
             <td th:text="${team.getId()}"></td>
             <td><a th:text="${team.getLeague().getName()}" th:href="@{'/football/team/update/' + ${team.getId()}}"></a></td>
             <td th:text="${team.getName()}"></td>
         </tr>
         </tbody>
     </table>
+
+    <!-- TODO : 일단 계산 다시해야함 ;-->
+    <nav
+        th:with="start=${(pages.number/10) * 10 + 1},
+                    end=(${(pages.totalPages == 0) ? 1 : (start + (10 -1) < pages.totalPages ? start + (10 - 1) : pages.totalPages)})">
+        <ul class="pagination">
+            <li class="page-item" th:if="${start > 1}">
+                <a class="page-link" href="#" th:href="@{/football/team(page=0)}">&lt&lt</a>
+            </li>
+
+            <li class="page-item" th:if="${pages.totalPages > 0}">
+                <a class="page-link" href="#" th:href="@{/football/team(page=${start - 1})}">Previous</a>
+            </li>
+
+            <li class="page-item" th:each="page : ${#numbers.sequence(start, end)}">
+                <a class="page-link" href="#" th:href="@{/football/team(page=${page - 1})}" th:text="${page}"></a>
+            </li>
+
+            <li class="page-item" th:if="${start < end}">
+                <a class="page-link" href="#" th:href="@{/football/team(page=${start + 1})}">Next</a>
+            </li>
+
+            <li class="page-item" th:if="${end < pages.totalPages}">
+                <a class="page-link" href="#" th:href="@{/football/team(page=${pages.totalPages-1})}">&gt&gt</a>
+            </li>
+
+        </ul>
+    </nav>
+
     <div class="col-md-12">
         <div class="row">
             <div class="col-md-6">

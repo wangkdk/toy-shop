@@ -6,6 +6,7 @@ import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EqualsAndHashCode(of = {"id"})
 @Table(uniqueConstraints = {
         @UniqueConstraint(
                 name = "LEAGUE_NAME_UNIQUE",

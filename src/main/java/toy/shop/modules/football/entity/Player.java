@@ -7,6 +7,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @ToString(of = {"id", "name", "number"})
+@EqualsAndHashCode(of = {"id"})
 @Entity
 public class Player {
 
