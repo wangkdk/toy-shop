@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="fragments.html :: head"></head>
 
@@ -10,28 +9,30 @@
 
 <div class="container">
     <div class="py-5 text-center">
-        <h2>팀 리스트</h2>
+        <h2>선수 리스트</h2>
     </div>
     <table class="table table-horizontal table-bordered">
         <thead class="thead-strong">
         <tr>
             <th>게시글번호</th>
-            <th>리그</th>
-            <th>팀이름</th>
+            <th>팀</th>
+            <th>선수이름</th>
+            <th>선수 등번호</th>
         </tr>
         </thead>
         <tbody id="tbody">
-        <tr th:each="team : ${teams.getContent()}">
-            <td th:text="${team.getId()}"></td>
-            <td><a th:text="${team.getLeague().getName()}" th:href="@{'/football/team/update/' + ${team.getId()}}"></a></td>
-            <td th:text="${team.getName()}"></td>
+        <tr th:each="player : ${players.getContent()}">
+            <td th:text="${player.getId()}"></td>
+            <td th:text="${player.getTeam().getName()}"></td>
+            <td th:text="${player.getName()}"></td>
+            <td th:text="${player.getNumber()}"></td>
         </tr>
         </tbody>
     </table>
     <div class="col-md-12">
         <div class="row">
             <div class="col-md-6">
-                <a href="/football/team/create" role="button" class="btn btn-primary">팀 등록하기</a>
+                <a href="/football/player/create" role="button" class="btn btn-primary">선수 등록하기</a>
             </div>
         </div>
     </div>

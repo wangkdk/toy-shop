@@ -2,6 +2,10 @@ package toy.shop.modules.football;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -30,9 +34,9 @@ public class TeamController {
     }
 
     @GetMapping
-    public String list(Model model) {
+    public String list(Model model, Pageable pageable) {
         // TODO : 테스트는 페이징 만들고 처리하기
-        List<Team> teams = teamRepository.findAll();
+        Page<Team> teams = teamRepository.findAll(pageable);
         model.addAttribute("teams", teams);
         return "football/team-list";
     }
@@ -91,5 +95,11 @@ public class TeamController {
     public String deleteSubmit(@PathVariable Long id) {
         teamService.removeTeam(id);
         return "redirect:/football/team";
+    }
+
+    @GetMapping("/data")
+    public String generateTestData() {
+        teamService.generateTestData();
+        return "redirect:/";
     }
 }
