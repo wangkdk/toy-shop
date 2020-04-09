@@ -1,17 +1,19 @@
-package toy.shop.modules.football.form;
+package toy.shop.modules.football.controller.form;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import toy.shop.modules.football.League;
+import toy.shop.modules.football.entity.League;
 
 import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
 @NoArgsConstructor
-public class TeamSaveForm {
+public class TeamModifyForm {
+
+    private Long id;
 
     private League league;
 
@@ -19,9 +21,9 @@ public class TeamSaveForm {
     private String name;
 
     @Builder
-    public TeamSaveForm(League league, String name) {
+    public TeamModifyForm(Long id, League league, @NotBlank String name) {
+        this.id = id;
         this.league = league;
         this.name = name;
     }
-
 }

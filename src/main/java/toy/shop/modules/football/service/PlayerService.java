@@ -1,8 +1,12 @@
-package toy.shop.modules.football;
+package toy.shop.modules.football.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import toy.shop.modules.football.entity.Player;
+import toy.shop.modules.football.entity.Team;
+import toy.shop.modules.football.repository.PlayerRepository;
+import toy.shop.modules.football.repository.TeamRepository;
 
 @RequiredArgsConstructor
 @Service

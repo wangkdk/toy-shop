@@ -1,22 +1,23 @@
-package toy.shop.modules.football;
+package toy.shop.modules.football.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import toy.shop.modules.football.form.TeamModifyForm;
-import toy.shop.modules.football.form.TeamSaveForm;
-import toy.shop.modules.football.validator.TeamSaveFormValidator;
+import toy.shop.modules.football.repository.TeamRepository;
+import toy.shop.modules.football.service.TeamService;
+import toy.shop.modules.football.controller.form.TeamModifyForm;
+import toy.shop.modules.football.controller.form.TeamSaveForm;
+import toy.shop.modules.football.controller.validator.TeamSaveFormValidator;
+import toy.shop.modules.football.entity.League;
+import toy.shop.modules.football.entity.Team;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RequiredArgsConstructor
 @Slf4j

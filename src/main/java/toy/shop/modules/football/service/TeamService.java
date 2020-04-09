@@ -1,11 +1,13 @@
-package toy.shop.modules.football;
+package toy.shop.modules.football.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
+import toy.shop.modules.football.entity.League;
+import toy.shop.modules.football.entity.Team;
+import toy.shop.modules.football.repository.TeamRepository;
 
 @Slf4j
 @RequiredArgsConstructor

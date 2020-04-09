@@ -1,12 +1,12 @@
-package toy.shop.modules.football.validator;
+package toy.shop.modules.football.controller.validator;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import toy.shop.modules.football.Team;
-import toy.shop.modules.football.TeamRepository;
-import toy.shop.modules.football.form.TeamSaveForm;
+import toy.shop.modules.football.entity.Team;
+import toy.shop.modules.football.repository.TeamRepository;
+import toy.shop.modules.football.controller.form.TeamSaveForm;
 
 @Component
 @RequiredArgsConstructor

@@ -1,9 +1,8 @@
-package toy.shop.modules.football.form;
+package toy.shop.modules.football.controller.form;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import toy.shop.modules.football.Team;
 
 @Getter
 @Setter

@@ -1,4 +1,4 @@
-package toy.shop.modules.football;
+package toy.shop.modules.football.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,7 +10,12 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import toy.shop.modules.football.form.PlayerSaveForm;
+import toy.shop.modules.football.repository.PlayerRepository;
+import toy.shop.modules.football.service.PlayerService;
+import toy.shop.modules.football.repository.TeamRepository;
+import toy.shop.modules.football.controller.form.PlayerSaveForm;
+import toy.shop.modules.football.entity.Player;
+import toy.shop.modules.football.entity.Team;
 
 import javax.validation.Valid;
 import java.util.List;
