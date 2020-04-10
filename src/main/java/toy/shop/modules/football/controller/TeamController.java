@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import toy.shop.modules.football.controller.form.TeamSearchCondition;
 import toy.shop.modules.football.dto.TeamListDto;
 import toy.shop.modules.football.repository.TeamRepository;
 import toy.shop.modules.football.service.TeamService;
@@ -36,10 +37,12 @@ public class TeamController {
     }
 
     @GetMapping
-    public String list(Model model, Pageable pageable) {
+    public String list(Model model, Pageable pageable, TeamSearchCondition teamSearchCondition) {
         // TODO : 테스트는 페이징 만들고 처리하기
 //        Page<Team> teams = teamRepository.findAll(pageable);
-        Page<TeamListDto> teams = teamRepository.searchPage(pageable);
+        Page<TeamListDto> teams = teamRepository.searchPage(pageable, teamSearchCondition);
+        model.addAttribute(teamSearchCondition);
+        model.addAttribute("leagues", League.values());
         model.addAttribute("pages", teams);
         return "football/team-list";
     }
