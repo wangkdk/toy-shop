@@ -30,7 +30,7 @@ public class MemberService implements UserDetailsService {
     }
 
     public void login(Member member) {
-
+        log.info("MemberService login");
         // 정석적인 방법은 아니지만 plain text 를 가져올 방법이 없기 때문에 이렇게 한다.
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
                 new UserMember(member),
